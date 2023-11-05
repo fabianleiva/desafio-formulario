@@ -1,17 +1,14 @@
 import { useState } from "react";
 
-const Form = () => {
+const Form = ({ setError, setPasswordError, setSuccess }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-  const [error, setError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-
   const dataValidation = (e) => {
     e.preventDefault();
-
+    setSuccess(false);
     if (
       name === "" ||
       email === "" ||
@@ -28,6 +25,7 @@ const Form = () => {
       return;
     } else {
       setPasswordError(false);
+      setSuccess(true);
     }
     setError(false);
     setPasswordError(false);
@@ -63,7 +61,7 @@ const Form = () => {
         <div className="form-group">
           <label>Contraseña</label>
           <input
-            type="text"
+            type="password"
             name="password"
             className="form-control"
             onChange={(e) => setPassword(e.target.value)}
@@ -73,7 +71,7 @@ const Form = () => {
         <div className="form-group">
           <label>Confirmar tu contraseña</label>
           <input
-            type="text"
+            type="password"
             name="password confirmation"
             className="form-control"
             onChange={(e) => setPasswordConfirmation(e.target.value)}
@@ -81,10 +79,8 @@ const Form = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Enviar
+          Registrarse
         </button>
-        {error ? <p>Todos los campos son obligatorios</p> : null}
-        {passwordError ? <p>Contraseñas no coinciden</p> : null}
       </form>
     </>
   );
