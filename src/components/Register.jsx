@@ -13,6 +13,7 @@ const Register = () => {
         }}
       >
         <h3>CREA UNA CUENTA</h3>
+        <SocialButton facebook="facebook" github="github" linkedin="linkedin" />
         <span>O usa tu correo para registrarte</span>
         <Form />
       </div>

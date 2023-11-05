@@ -51,3 +51,18 @@ body {
 .form-group {
   width: 100%;
 }
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  height: auto;
+}
+
+.icon {
+  font-size: 4rem;
+  padding: 1rem;
+  border: solid 1px #262523;
+  border-radius: 100rem;
+  cursor: pointer;
+}
