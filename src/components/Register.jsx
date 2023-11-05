@@ -2,7 +2,7 @@ import Form from "./Form";
 import SocialButton from "./SocialButton";
 import Alert from "./Alert";
 
-const Register = ({error, setError, passwordError, setPasswordError, success, setSuccess}) => {
+const Register = ({ error, setError }) => {
   return (
     <>
       <div
@@ -15,8 +15,8 @@ const Register = ({error, setError, passwordError, setPasswordError, success, se
         <h3>CREA UNA CUENTA</h3>
         <SocialButton facebook="facebook" github="github" linkedin="linkedin" />
         <span>O usa tu correo para registrarte</span>
-        <Form setError={setError} setPasswordError={setPasswordError} setSuccess={setSuccess}/>
-        <Alert error={error} passwordError={passwordError} success={success}/>
+        <Form setError={setError} />
+        <Alert error={error} />
       </div>
     </>
   );
