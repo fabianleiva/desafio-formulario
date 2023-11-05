@@ -5,20 +5,11 @@ import Background from "./components/Background";
 import { useState } from "react";
 
 function App() {
-  const [error, setError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   return (
     <>
-      <Register
-        error={error}
-        setError={setError}
-        passwordError={passwordError}
-        setPasswordError={setPasswordError}
-        success={success}
-        setSuccess={setSuccess}
-      />
+      <Register error={error} setError={setError} />
       <Background />
     </>
   );
