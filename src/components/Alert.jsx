@@ -1,7 +1,9 @@
-const Alert = ({ error, passwordError, success }) => {
+const Alert = ({ error }) => {
   return (
     <>
-
+      <div>
+        <p>{error.message}</p>
+      </div>
     </>
   );
 };

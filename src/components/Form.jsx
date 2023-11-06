@@ -1,51 +1,68 @@
 import { useState } from "react";
 
-const Form = ({ setError, setPasswordError, setSuccess }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+const Form = ({ setError }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordConfirmation: "",
+  });
 
-  const dataValidation = (e) => {
+  const validation = (e) => {
     e.preventDefault();
-    setSuccess(false);
-    if (
-      name === "" ||
-      email === "" ||
-      password === "" ||
-      passwordConfirmation === ""
-    ) {
-      setError(true);
+
+    const { name, email, password, passwordConfirmation } = formData;
+    const dataValidation =
+      !name || !email || !password || !passwordConfirmation;
+    const passwordValidation = password !== passwordConfirmation;
+
+    if (dataValidation) {
+      setError({
+        error: true,
+        message: "Completa todos los campos!",
+        color: "danger",
+      });
       return;
     } else {
-      setError(false);
+      setError({
+        error: false,
+        message: "Registro exitoso!",
+        color: "success",
+      });
     }
-    if (password !== passwordConfirmation) {
-      setPasswordError(true);
+
+    if (passwordValidation) {
+      setError({
+        error: true,
+        message: "El password no coincide!",
+        color: "danger",
+      });
       return;
-    } else {
-      setPasswordError(false);
-      setSuccess(true);
     }
-    setError(false);
-    setPasswordError(false);
-    setName("");
-    setEmail("");
-    setPassword("");
-    setPasswordConfirmation("");
+
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirmation: "",
+    });
+  };
+
+  const setChanges = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <>
-      <form className="form" onSubmit={dataValidation}>
+      <form className="form" onSubmit={(e) => validation(e)}>
         <div className="form-group">
           <label>Nombre</label>
           <input
             type="text"
             name="name"
             className="form-control"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
+            onChange={setChanges}
+            value={formData.name}
           />
         </div>
         <div className="form-group">
@@ -54,8 +71,8 @@ const Form = ({ setError, setPasswordError, setSuccess }) => {
             type="text"
             name="email"
             className="form-control"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
+            onChange={setChanges}
+            value={formData.email}
           />
         </div>
         <div className="form-group">
@@ -64,18 +81,18 @@ const Form = ({ setError, setPasswordError, setSuccess }) => {
             type="password"
             name="password"
             className="form-control"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
+            onChange={setChanges}
+            value={formData.password}
           />
         </div>
         <div className="form-group">
-          <label>Confirmar tu contraseña</label>
+          <label>Confirmar contraseña</label>
           <input
             type="password"
-            name="password confirmation"
+            name="passwordConfirmation"
             className="form-control"
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
-            value={passwordConfirmation}
+            onChange={setChanges}
+            value={formData.passwordConfirmation}
           />
         </div>
         <button type="submit" className="btn btn-primary">
