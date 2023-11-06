@@ -15,19 +15,20 @@ const Form = ({ setError }) => {
     const dataValidation =
       !name || !email || !password || !passwordConfirmation;
     const passwordValidation = password !== passwordConfirmation;
+    const emailValidation = email.indexOf("@");
 
     if (dataValidation) {
       setError({
         error: true,
         message: "Completa todos los campos!",
-        color: "danger",
+        color: "text-danger",
       });
       return;
     } else {
       setError({
         error: false,
         message: "Registro exitoso!",
-        color: "success",
+        color: "text-success",
       });
     }
 
@@ -35,7 +36,18 @@ const Form = ({ setError }) => {
       setError({
         error: true,
         message: "El password no coincide!",
-        color: "danger",
+        color: "text-danger",
+      });
+      return;
+    }
+
+    if (emailValidation >= 0) {
+      null;
+    } else {
+      setError({
+        error: true,
+        message: "Ingresa un correo válido!",
+        color: "text-danger",
       });
       return;
     }

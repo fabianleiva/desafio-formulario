@@ -2,7 +2,7 @@ const Alert = ({ error }) => {
   return (
     <>
       <div>
-        <p>{error.message}</p>
+        <p className={error.color}>{error.message}</p>
       </div>
     </>
   );
